@@ -46,7 +46,7 @@ public class Tela extends JFrame {
 		
 		JPanel panelButtons = new JPanel();
 		panelButtons.setPreferredSize(new Dimension(width-350,heigth));
-		panelButtons.setBackground(Color.white); //TODO COLOCAR COR PLUS
+		panelButtons.setBackground(Color.decode("#FFFACD")); 
 		populatePanelButtons(panelButtons);
 		pane.add(panelButtons,BorderLayout.WEST);
 		
@@ -182,7 +182,7 @@ public class Tela extends JFrame {
 		constraints.gridy = 1;
 		otherComponents.add(textNome, constraints);
 		
-		JLabel labelEmail = new JLabel("Email:	");
+		JLabel labelEmail = new JLabel("E-mail:	");
 		constraints.ipadx = 0;
 		constraints.gridx = 1;
 		constraints.gridy = 2;
@@ -203,29 +203,30 @@ public class Tela extends JFrame {
 		constraints.gridx = 2;
 		constraints.gridy = 3;
 		otherComponents.add(buttonSalvar, constraints);
-		
-		criaTable(otherComponents,constraints);
+			
+		criaTable(otherComponents);
 	}
 	
-	private void criaTable(JPanel otherComponents, GridBagConstraints constraints){
+	private void criaTable(JPanel otherComponents){
 		
-		String[] nameColumns = {"Nome","CPF","E-mail"};
+		String[] columnsName = {"Nome","CPF","E-mail"};
 		Object[][] data = {{"João"	,"111.111.111-11",	"joao@gmail.com"	},
 						   {"Maria"	,"222.222.222-22",	"maria@gmail.com"	},
 						   {"José"	,"333.333.333-33",	"jose@gmail.com"	}};
 		
+		GridBagConstraints constraints = new GridBagConstraints();
 				
-		JTable table = new JTable(data, nameColumns);
-		//table.setFillsViewportHeight(true);
-		constraints.ipady = 10;
-		constraints.ipadx = 0;
-		
-//		constraints.gridwidth = 10;
-	//	constraints.gridheight =9;
-//		constraints.ipadx = 150;
-//		constraints.ipady = 200;
-		constraints.gridx = 10;
+		DefaultTableModel model = new DefaultTableModel(data,columnsName);
+		JTable table = new JTable(model);
+		table.setFillsViewportHeight(true);
+		constraints.ipady = 20;
+		constraints.ipadx = 250;
+		constraints.insets = new Insets(30, 10, 10, 10);
+		constraints.gridwidth = 90; 
+		constraints.gridheight =20;
+		constraints.gridx = 1;
 	    constraints.gridy = 10;
+	    
 	    otherComponents.add(table, constraints);
 		
 	}
